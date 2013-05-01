@@ -36,6 +36,11 @@ class TodoItemsController < ApplicationController
   end
   
   def destroy
-    
+    @todo_item = TodoItem.find(params[:id])
+    @todo_item.destroy
+    respond_to do |format|
+      format.html { render json: @todo_item }
+      format.json { render json: @todo_item }
+    end
   end
 end

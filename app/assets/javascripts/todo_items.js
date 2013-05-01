@@ -51,14 +51,32 @@ function completeListItem(todoItemDOMElement) {
   });
 }
 
-function deleteItem() {
-  listElement = $(this).parent();
+function deleteItem(listElement) {
   listElement.slideUp(400, function() {listElement.remove()});
+}
+
+function deleteListItem(todoItemDOMElement) {
+  $.ajax({
+    url: "/todo_items/destroy",
+    method: "post",
+    data: {"id": todoItemDOMElement.attr('task_id')},
+    dataType: "json",
+    success: function(todoItem){
+      deleteItem(todoItemDOMElement);
+     },
+    error: function() {
+      alert("failed to delete item.");
+    }
+  });
 }
 
 $(document).ready(function(){
   $('#add').on('click', addListItem);
-  $(document).on('click', '.delete', deleteItem);
+  $(document).on('click', '.delete', function () {
+    deleteListItem($(this).parent()); // this is the checkbox
+    // we want to pass the listElement which has the id on it
+    // so we use .parent.
+  });
   $(document).on('click', '.done', function () {
     completeListItem($(this).parent()); // this is the checkbox
     // we want to pass the listElement which has the id on it

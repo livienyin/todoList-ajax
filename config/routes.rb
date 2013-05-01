@@ -52,6 +52,7 @@ TodolistAjax::Application.routes.draw do
   get '/todo_items' => 'todo_items#get_items'
   post '/todo_items' => 'todo_items#create'
   post '/todo_items/complete' => 'todo_items#complete'
+  post '/todo_items/destroy' => 'todo_items#destroy'
   resources :todo_item
   # See how all your routes lay out with "rake routes"
 
