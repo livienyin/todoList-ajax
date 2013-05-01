@@ -7,6 +7,9 @@ function createListDOMElement(todoItem) {
   listElement.attr('task_id', todoItem.id);
   listElement.hide().fadeIn();
   $('#new-text').val('');
+  if (todoItem.completed) {
+    completeDOMElement(listElement);
+  }
 }
 
 function addListItem() {
@@ -37,11 +40,11 @@ function completeListItem(todoItemDOMElement) {
   $.ajax({
     url: "/todo_items/complete",
     method: "post",
-    data: {"id": todoItemDOMElement.task_id},
+    data: {"id": todoItemDOMElement.attr('task_id')},
     dataType: "json",
     success: function(todoItem) {
       completeDOMElement(todoItemDOMElement);
-    }
+    },
     error: function() {
       alert("failed to complete item.");
     }

@@ -27,7 +27,7 @@ class TodoItemsController < ApplicationController
 
   def complete
     @todo_item = TodoItem.find(params[:id])
-    @todo_item.completed = true
+    @todo_item.completed = !@todo_item.completed
     @todo_item.save
     respond_to do |format|
       format.html { render json: @todo_item }
