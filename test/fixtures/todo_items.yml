@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  due_at: 2013-04-30 21:28:42
+  completed: false
+
+two:
+  name: MyString
+  due_at: 2013-04-30 21:28:42
+  completed: false
